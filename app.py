@@ -1,7 +1,8 @@
 from flask import Flask, redirect, render_template, request, session
-from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 from cs50 import SQL
+from flask_session import Session
+
 
 from helpers import login_required, apology, get_morrisons_items, get_waitrose_items
 
