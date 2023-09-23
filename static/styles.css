@@ -1,0 +1,32 @@
+body {
+    padding-top: 70px;
+}
+
+footer {
+    margin-top: 100px;
+}
+
+.img-fluid {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+.container-table {
+    width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.zoom:hover {
+    transform: scale(5);
+    transform-origin: left ;
+  }
+
+.custom-success-message {
+    color: lime;
+    font-weight: 700;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}

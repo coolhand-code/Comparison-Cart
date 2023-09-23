@@ -1,0 +1,110 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Search
+{% endblock %}
+
+{% block main %}
+<main >
+    <!-- Search form -->
+    <div class="container py-5 text-center" id="seach-form">
+
+        <form method="POST" action="/search">
+            <div class="mb-3">
+                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="item" placeholder="item" type="text" required>
+            </div>
+            <button class="btn btn-primary" type="submit">Search</button>
+        </form>
+    </div>
+
+    {% if success_wait %}
+    <div class="mb-3 custom-success-message">{{ success_wait }}</div>
+    {% endif %}
+
+    {% if success_mor %}
+    <div class="mb-3 custom-success-message">{{ success_mor }}</div>
+    {% endif %}
+
+    <!-- Product Tables -->
+    <div class="container-table" style="overflow: hidden;">
+
+        <!-- First Table -->
+        <div class="container py-5 text-center" style="float: left; width: 50%;">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th class="text-start">Image</th>
+                        <th class="text-start">Product name</th>
+                        <th class="text-start">Size</th>
+                        <th class="text-end">Price per unit</th>
+                        <th class="text-end">Price</th>
+                        <th class="text-end">Morrisons</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in morrisons_items %}
+                    <!-- Form for adding items to morrisons cart -->
+                    <form id="mor_add" method="GET" action="/searched">
+                        <tr>
+                            <td class="text-start">
+                                <img class="zoom" src="https://groceries.morrisons.com{{ row["item_img_url_mor"] }}" alt="{{ row["item_name_mor"] }} Image" width="50">
+                            </td>
+                            <td class="text-start">{{ row["item_name_mor"] }}</td>
+                            <td class="text-start">{{ row["item_size_mor"] }}</td>
+                            <td class="text-end">{{ row["item_per_prc_mor"] }}</td>
+                            <td class="text-end">{{ row["item_prc_mor"] }}</td>
+                            <td class="text-end">
+                                <input type="number" name="item_qty_mor" value="1" placeholder="1" min="1">
+                                <input type="hidden" name="item_prc_mor" value="{{ row["item_prc_mor"] }}">
+                                <input type="hidden" name="item_name_mor" value="{{ row["item_name_mor"] }}">
+                                <input type="hidden" name="item_img_url_mor" value="{{ row["item_img_url_mor"] }}">
+                                <button type="submit">Add</button>
+                            </td>
+                        </tr>
+                    </form>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Second Table -->
+        <div class="container py-5 text-center" style="float: left; width: 50%;">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th class="text-start">Image</th>
+                        <th class="text-start">Product name</th>
+                        <th class="text-start">Size</th>
+                        <th class="text-end">Price per unit</th>
+                        <th class="text-end">Price</th>
+                        <th class="text-end">Waitrose</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in waitrose_items %}
+                    <!-- Form for adding items to morrisons cart -->
+                    <form method="GET" action="/searched"> 
+                        <tr>
+                            <td class="text-start">
+                                <img class="zoom" src="{{ row["item_img_url_wait"] }}" alt="{{ row["item_name_wait"] }} Image" width="50">
+                            </td>
+                            <td class="text-start">{{ row.item_name_wait }}</td>
+                            <td class="text-start">{{ row.item_size_wait }}</td>
+                            <td class="text-end">{{ row.item_per_prc_wait }}</td>
+                            <td class="text-end">{{ row.item_prc_wait }}</td>
+                            <td class="text-end">
+                                <input type="number" name="item_qty_wait" value="1" placeholder="1" min="1">
+                                <input type="hidden" name="item_prc_wait" value="{{ row["item_prc_wait"] }}">
+                                <input type="hidden" name="item_name_wait" value="{{ row["item_name_wait"] }}">
+                                <input type="hidden" name="item_img_url_wait" value="{{ row["item_img_url_wait"] }}">
+                                <button type="submit">Add</button>
+                            </td>
+                        </tr>
+                    </form>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+{% endblock %}
