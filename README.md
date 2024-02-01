@@ -1,6 +1,6 @@
 # Comparison Cart
 
-### Video Demo: [Link](<URL HERE>)
+### Video Demo: [Link](<https://www.youtube.com/watch?v=6hoVfU5Q8QI>)
 
 ## Summary
 
